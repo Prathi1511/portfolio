@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prathibha Sivakumar — Data & Backend Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12151c;
+    --bg-panel: #171b24;
+    --ink: #ece9e1;
+    --ink-dim: #8b93a3;
+    --gold: #c9a15c;
+    --teal: #5fb3a3;
+    --line: #2a3040;
+    --radius: 6px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold); color:#12151c;}
+
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(18,21,28,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--ink);}
+  .brand span{color:var(--gold);}
+  .navlinks{display:flex; gap:28px; font-size:14px; color:var(--ink-dim);}
+  .navlinks a{transition:color .2s;}
+  .navlinks a:hover{color:var(--teal);}
+  .navlinks a:focus-visible, a:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+  .navbtn{
+    display:none;
+  }
+
+  /* HERO */
+  header.hero{
+    padding:96px 0 72px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr 320px;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-photo-frame{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
+    border-radius:var(--radius);
+    background:linear-gradient(155deg, #1c2130, #12151c);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .hero-photo-frame img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .corner-tick{position:absolute; width:16px; height:16px; border-color:var(--gold); opacity:.8;}
+  .ct-tl{top:10px; left:10px; border-top:2px solid; border-left:2px solid;}
+  .ct-br{bottom:10px; right:10px; border-bottom:2px solid; border-right:2px solid;}
+
+  .hero-copy .eyebrow{margin-bottom:14px;}
+  .hero-copy h1{font-size:44px; line-height:1.08; margin-bottom:10px;}
+  .hero-copy .role{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--teal);
+    font-size:15px;
+    margin-bottom:22px;
+  }
+  .hero-copy p.desc{color:var(--ink-dim); max-width:52ch; font-size:15.5px; margin-bottom:28px;}
+  .hero-links{display:flex; gap:16px; flex-wrap:wrap; font-size:14px;}
+  .hero-links a{
+    border:1px solid var(--line);
+    padding:9px 16px;
+    border-radius:4px;
+    color:var(--ink);
+    transition:.2s;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .hero-links a:hover{border-color:var(--gold); color:var(--gold);}
+  .hero-links a.primary{background:var(--gold); color:#12151c; border-color:var(--gold); font-weight:600;}
+  .hero-links a.primary:hover{background:#dcb673;}
+
+  /* SECTIONS */
+  section{padding:80px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{display:flex; align-items:baseline; gap:16px; margin-bottom:40px;}
+  .section-head h2{font-size:28px;}
+  .section-head .eyebrow{white-space:nowrap;}
+  .rule{flex:1; height:1px; background:var(--line);}
+
+  /* EXPERIENCE */
+  .exp-block{margin-bottom:44px;}
+  .exp-top{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:6px;}
+  .exp-top h3{font-size:20px;}
+  .exp-top .date{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-dim);}
+  .exp-sub{color:var(--teal); font-size:14px; margin-bottom:22px; font-family:'IBM Plex Mono', monospace;}
+
+  .client-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 24px;
+    margin-bottom:16px;
+    border-left:2px solid var(--gold);
+  }
+  .client-card-head{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    cursor:pointer;
+    background:none; border:none; width:100%; text-align:left; padding:0;
+    font-family:inherit; color:inherit;
+  }
+  .client-card-head:focus-visible{outline:2px solid var(--teal); outline-offset:4px;}
+  .client-card h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .client-card .tags{font-size:12px; color:var(--ink-dim);}
+  .client-card .chevron{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--teal);
+    font-size:16px;
+    transition:transform .25s ease;
+    flex-shrink:0;
+  }
+  .client-card.open .chevron{transform:rotate(45deg);}
+  .client-card .accordion-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease, margin-top .3s ease;
+  }
+  .client-card.open .accordion-body{max-height:400px; margin-top:16px;}
+  .client-card ul{padding-left:18px; color:var(--ink-dim); font-size:14.5px;}
+  .client-card li{margin-bottom:6px;}
+  .client-card li::marker{color:var(--teal);}
+
+  /* PROJECTS */
+  .proj-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .proj-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+    display:flex; flex-direction:column;
+    transition:.2s;
+  }
+  .proj-card:hover{border-color:var(--teal); transform:translateY(-3px);}
+  .proj-card h3{font-size:17px; margin-bottom:8px;}
+  .proj-card .tags{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold); margin-bottom:14px; text-transform:uppercase; letter-spacing:.04em;}
+  .proj-card p{color:var(--ink-dim); font-size:14px; flex:1;}
+
+  /* SKILLS — icon grid grouped by category */
+  .skills-groups{display:flex; flex-direction:column; gap:28px;}
+  .skill-group-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin-bottom:14px;
+  }
+  .skill-icons{display:flex; flex-wrap:wrap; gap:12px;}
+  .skill-tile{
+    display:flex; align-items:center; gap:10px;
+    border:1px solid var(--line);
+    background:var(--bg-panel);
+    border-radius:6px;
+    padding:10px 16px;
+    font-size:14px;
+    color:var(--ink);
+    transition:.2s;
+  }
+  .skill-tile:hover{border-color:var(--gold); transform:translateY(-2px);}
+  .icon-badge{
+    display:flex; align-items:center; justify-content:center;
+    width:30px; height:30px;
+    background:#fff;
+    border-radius:7px;
+    flex-shrink:0;
+  }
+  .icon-badge img{display:block; width:18px; height:18px;}
+  .pill{
+    display:inline-block;
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:9px 16px;
+    font-size:13.5px;
+    color:var(--ink);
+    background:var(--bg-panel);
+  }
+
+  /* CERTIFICATIONS + ACHIEVEMENTS */
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .cert-item{
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .cert-item:last-child{border-bottom:none;}
+  .cert-item .cert-title{font-weight:600; font-size:15px; margin-bottom:3px;}
+  .cert-item .cert-sub{color:var(--ink-dim); font-size:13.5px; margin-bottom:6px;}
+  .cert-item a{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--teal);}
+  .cert-item a:hover{text-decoration:underline;}
+
+  .ach-list{list-style:none;}
+  .ach-list li{
+    padding:14px 0 14px 28px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    font-size:14.5px;
+    color:var(--ink);
+  }
+  .ach-list li:last-child{border-bottom:none;}
+  .ach-list li::before{
+    content:"▸";
+    position:absolute; left:0; color:var(--gold);
+  }
+
+  /* EDUCATION */
+  .edu-layout{display:grid; grid-template-columns:1fr 300px; gap:20px; align-items:stretch;}
+  .edu-card{
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px 28px; flex-wrap:wrap; gap:12px;
+  }
+  .edu-card h3{font-size:17px; margin-bottom:4px;}
+  .edu-card .sub{color:var(--ink-dim); font-size:13.5px;}
+  .edu-card .cgpa{font-family:'IBM Plex Mono', monospace; color:var(--gold); font-size:22px;}
+
+  .edu-sidebar{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-left:2px solid var(--teal);
+    border-radius:var(--radius);
+    padding:22px 24px;
+  }
+  .edu-sidebar-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-dim); margin-bottom:10px;
+  }
+  .edu-sidebar h4{font-size:15px; margin-bottom:14px; line-height:1.4;}
+  .edu-sidebar-list{list-style:none;}
+  .edu-sidebar-list li{
+    display:flex; justify-content:space-between; gap:10px;
+    font-size:13.5px; color:var(--ink);
+    padding:9px 0;
+    border-top:1px solid var(--line);
+  }
+  .edu-sidebar-list li:first-child{border-top:none;}
+  .edu-sidebar-list .edu-year{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--ink-dim); font-size:12px; white-space:nowrap;
+  }
+
+  /* FOOTER / CONTACT */
+  footer{padding:64px 0 40px;}
+  .contact-row{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;
+  }
+  footer h2{font-size:30px; margin-bottom:8px;}
+  footer p{color:var(--ink-dim); font-size:14.5px; max-width:44ch;}
+  .contact-links{display:flex; gap:20px; flex-wrap:wrap;}
+  .contact-links a{
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+    color:var(--ink-dim); border-bottom:1px solid transparent;
+  }
+  .contact-links a:hover{color:var(--gold); border-color:var(--gold);}
+  .foot-note{margin-top:48px; padding-top:20px; border-top:1px solid var(--line); font-size:12px; color:var(--ink-dim); font-family:'IBM Plex Mono', monospace; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+
+  /* reveal animation */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  @media (max-width: 860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-photo-frame{max-width:240px; margin:0 auto;}
+    .proj-grid{grid-template-columns:1fr;}
+    .edu-layout{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Prathibha Sivakumar</div>
+    <div class="navlinks">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Portfolio</div>
+      <h1>Hi, I'm Prathibha<br>Sivakumar</h1>
+      <div class="role">Computer Science Engineer — Data, Analytics &amp; Backend</div>
+      <p class="desc">Computer Science Engineering graduate with experience across backend development, UAT support and ML-based workflows. Proficient in SQL, Excel, Python and Power BI, with hands-on exposure to Databricks, cloud environments and collaborative delivery teams. Seeking full-time opportunities in Data, Analytics and Software Engineering.</p>
+      <div class="hero-links">
+        <a class="primary" href="#contact">Get in touch ↓</a>
+        <a href="#projects">See projects</a>
+        <a id="resume-download" href="assets/resume/Prathibha_19-07-2026.pdf" download>Resume</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-frame">
+      <!-- Profile photo embedded directly so the page stays a single file -->
+      <img src="assets/images/profile.jpeg" alt="Prathibha Sivakumar">
+      <span class="corner-tick ct-tl"></span>
+      <span class="corner-tick ct-br"></span>
+    </div>
+  </div>
+</header>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <div class="rule"></div>
+      <div class="eyebrow">2025 — 2026</div>
+    </div>
+
+    <div class="exp-block reveal">
+      <div class="exp-top">
+        <h3>Avasoft — AI Trainee Engineer → ML Analyst</h3>
+        <div class="date">Aug 2025 – Jun 2026</div>
+      </div>
+      <div class="exp-sub">Contributed across 3 client projects spanning backend development, UAT support and ML-based forecasting</div>
+
+      <div class="client-card">
+        <button class="client-card-head" aria-expanded="false">
+          <div>
+            <h4>CityTwig</h4>
+            <div class="tags">Backend Development · REST API · Python</div>
+          </div>
+          <span class="chevron">+</span>
+        </button>
+        <div class="accordion-body">
+          <ul>
+            <li>Developed a chat history search API for the Hulii chatbot with pagination, search, filtering and sorting across conversations, messages and uploaded files.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="client-card">
+        <button class="client-card-head" aria-expanded="false">
+          <div>
+            <h4>GSG</h4>
+            <div class="tags">Databricks · UAT Support · Agent Systems</div>
+          </div>
+          <span class="chevron">+</span>
+        </button>
+        <div class="accordion-body">
+          <ul>
+            <li>Resolved UAT issues and improved code quality through standardisation — docstrings, return types, removal of hardcoded values — and fixed prompt store issues at the database level.</li>
+            <li>Supported UAT testing and workflow validation across agent tools including triage, RBAC, feedback and follow-up flows, plus system and user prompt handling.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="client-card">
+        <button class="client-card-head" aria-expanded="false">
+          <div>
+            <h4>J Goldman</h4>
+            <div class="tags">Databricks · ML Forecasting · Ensemble Models · Data Pipelines</div>
+          </div>
+          <span class="chevron">+</span>
+        </button>
+        <div class="accordion-body">
+          <ul>
+            <li>Supported an ML-based YoY revenue forecasting solution for a hedge fund, delivering QTD predictions and full-quarter actuals across current and guidance quarters.</li>
+            <li>Maintained four Databricks pipelines (Daily and Quarterly) for ML predictions, including an MC-specific delta-model variant with differing data filtering.</li>
+            <li>Assisted in managing regression, adjusted and FD models — the top 10 ranked models via the Borda algorithm were combined into the production ensemble.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <h3>Enterprise Knowledge Assistant</h3>
+        <div class="tags">FastAPI · PostgreSQL · RAG · Embeddings</div>
+        <p>An AI-powered assistant that lets users query documents in natural language through a RAG pipeline with PDF parsing, chunking and vector embeddings. Secure REST APIs, Dockerized PostgreSQL with pgvector, JWT authentication.</p>
+      </div>
+      <div class="proj-card reveal">
+        <h3>Real-Time Shipping Cost Prediction</h3>
+        <div class="tags">Python · ML · SQL · FastAPI · Power BI</div>
+        <p>A real-time freight cost prediction system using a FastAPI regression model that estimates shipping cost at cart stage, before the order is placed,with interactive Power BI dashboards.</p>
+      </div>
+      <div class="proj-card reveal">
+        <h3>HR Analytics Dashboard</h3>
+        <div class="tags">Power BI · Power Query · DAX</div>
+        <p>An HR analytics dashboard with Power Query data prep and DAX-driven KPIs, tracking employee attrition across departments, job roles and demographics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="skills-groups">
+      <div class="skill-group reveal">
+        <div class="skill-group-label">Programming &amp; Databases</div>
+        <div class="skill-icons">
+          <div class="skill-tile"><span class="icon-badge"><img src="https://cdn.simpleicons.org/python" alt=""></span><span>Python</span></div>
+          <div class="skill-tile"><span class="icon-badge"><img src="https://cdn.simpleicons.org/mysql" alt=""></span><span>SQL / MySQL</span></div>
+          <div class="skill-tile"><span class="icon-badge"><img src="https://cdn.simpleicons.org/postgresql" alt=""></span><span>PostgreSQL</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-label">Data &amp; Analytics</div>
+        <div class="skill-icons">
+          <div class="skill-tile"><span class="icon-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+	<path d="M0 0h16v16H0z" fill="none" />
+	<g fill="none" stroke="#a6da95" stroke-linecap="round" stroke-linejoin="round">
+		<path d="M2.5 3.13c0-.77.86-1.63 1.62-1.63h9.76c.76 0 1.62.86 1.62 1.63v9.75c0 .76-.86 1.62-1.62 1.62H4.13c-.77 0-1.63-.86-1.63-1.62M.5 5.5l4 5m0-5l-4 5" />
+		<path d="M7.5 5.5h5v5h-5zm2 0v5m-2-3h5" />
+	</g>
+</svg>
+</span><span>Excel</span></div>
+          <div class="skill-tile"><span class="icon-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI"></span><span>Power BI</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-label">Platforms</div>
+        <div class="skill-icons">
+          <div class="skill-tile"><span class="icon-badge"><img src="https://cdn.simpleicons.org/databricks" alt=""></span><span>Databricks</span></div>
+          <div class="skill-tile"><span class="icon-badge"><img src="https://cdn.simpleicons.org/fastapi" alt=""></span><span>FastAPI</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-label">Tools</div>
+        <div class="skill-icons">
+          <div class="skill-tile"><span class="icon-badge"><img src="https://cdn.simpleicons.org/git" alt=""></span><span>Git</span></div>
+          <div class="skill-tile"><span class="icon-badge"><img src="https://cdn.simpleicons.org/github" alt=""></span><span>GitHub</span></div>
+          <div class="skill-tile"><span class="icon-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code"></span><span>VS Code</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-label">Concepts</div>
+        <div class="skill-icons">
+          <span class="pill">Machine Learning</span>
+          <span class="pill">RAG</span>
+          <span class="pill">Embeddings</span>
+          <span class="pill">Backend Workflows</span>
+          <span class="pill">API Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Certifications &amp; Achievements</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <div class="cert-item reveal">
+          <div class="cert-title">Fundamentals of AI &amp; ML</div>
+          <div class="cert-sub">Infosys Springboard — Introductory course on AI/ML concepts</div>
+          <a href="https://skillsoft.digitalbadges.skillsoft.com/ce6dd482-a77a-4204-ade8-cf5548e9b7c6#acc.BxsiwPOY" target="_blank" rel="noopener">View credential ↗</a>
+        </div>
+        <div class="cert-item reveal">
+          <div class="cert-title">Artificial Intelligence and Machine Learning</div>
+          <div class="cert-sub">Infosys Springboard — Applied fundamentals of AI/ML</div>
+          <a href="https://skillsoft.digitalbadges.skillsoft.com/58d3a0b9-0ef7-43ca-a035-e21fa33e9c4c#acc.A48MblvB" target="_blank" rel="noopener">View credential ↗</a>
+        </div>
+      </div>
+      <div>
+        <ul class="ach-list reveal">
+          <li>1st Prize — Poster Making (3rd Year)</li>
+          <li>Participant — Smart India Hackathon (2nd Year)</li>
+          <li>Participant — Technical Quiz, ECE Symposium</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Education</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="edu-layout">
+      <div class="edu-card reveal">
+        <div>
+          <h3>B.E. Computer Science Engineering</h3>
+          <div class="sub">Easwari Engineering College, Chennai — First Class with Distinction</div>
+        </div>
+        <div class="cgpa">8.66</div>
+      </div>
+
+      <aside class="edu-sidebar reveal">
+        <div class="edu-sidebar-label">Earlier education</div>
+        <h4>DAV School, Adambakkam, Chennai</h4>
+        <ul class="edu-sidebar-list">
+          <li><span>Senior Secondary</span><span class="edu-year">2020 – 2022</span></li>
+          <li><span>Secondary</span><span class="edu-year">2018 – 2020</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-row">
+      <div>
+        <h2>Let's talk.</h2>
+        <p>Open to full-time roles in Data, Analytics and Software Engineering. Reach out by email or LinkedIn — I usually reply within a day.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:prathibhasivakumar@gmail.com">prathibhasivakumar@gmail.com</a>
+        <a href="tel:+917010909745">+91 70109 09745</a>
+        <a href="https://linkedin.com/in/prathibha-sivakumar" target="_blank" rel="noopener">linkedin.com/in/prathibha-sivakumar</a>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>Chennai, Tamil Nadu, India</span>
+      <span>© 2026 Prathibha Sivakumar</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.15});
+  items.forEach(i=>io.observe(i));
+
+  // Accordion: client project cards
+  document.querySelectorAll('.client-card-head').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const card = btn.closest('.client-card');
+      const isOpen = card.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+      btn.querySelector('.chevron').textContent = isOpen ? '×' : '+';
+    });
+  });
+  // Open the first card by default so visitors see the pattern
+  const firstHead = document.querySelector('.client-card-head');
+  if(firstHead){ firstHead.click(); }
+</script>
+
+</body>
+</html>
